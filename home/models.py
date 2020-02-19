@@ -2,6 +2,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from datetime import date
 from django.utils.text import slugify
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -23,6 +25,11 @@ class Menu(models.Model):
         self.slug = slugify(self.name)
         self.code = self.slug
         super(Menu, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('list-menus', kwargs={})
+
+
 
 
 from django.utils.translation import ugettext_lazy as _
